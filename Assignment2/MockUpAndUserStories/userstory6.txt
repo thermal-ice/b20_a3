@@ -1,0 +1,1 @@
+As a student user, the website should be responsive, to make it easier to view the contents on mobile devices. Especially tables, I shouldn't need to zoom in and swipe left and right to find the content I want.

@@ -1,0 +1,1 @@
+As a student user, there should be a "lectures" link/button on the home page which shows all the lecture slides and recordings.

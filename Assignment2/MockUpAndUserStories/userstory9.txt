@@ -1,0 +1,1 @@
+As a student user, when I enter the website I should see the home page, complete with a course description and a to do list, and syllabus link.

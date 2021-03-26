@@ -1,0 +1,1 @@
+As a student user, At the top of the website, I should see the title of the website and header below with all the important links. 

@@ -1,0 +1,1 @@
+As a student user, when I scroll to the bottom of the website, I should see a footer with a link to the Faculty of Computer Science at UofT, a link to the course team, and a blurb of the site creators and a link to a feedback page.

@@ -1,0 +1,1 @@
+As a student user, there should be a "course team" link/button on the bottom of each page which shows the contact information of every instructor and TA.

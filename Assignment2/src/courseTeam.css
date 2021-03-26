@@ -1,0 +1,112 @@
+* {
+  background-color: #eee;
+}
+
+.container h1,.container h5 {
+  margin: 10px;
+  padding: 10px;
+}
+
+.container h1,.container h5 {
+  /*darkslategrey*/
+  background-color: darkblue;
+  color: floralwhite;
+  text-align: start;
+}
+
+.container body {
+    background-color: cornsilk;
+}
+
+.headerNav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  font-size: 25px;
+  text-align: center;
+  background-color: darkblue;
+  height: 50px;
+  position: sticky;
+  top: 0px;
+}
+
+.headerNav a {
+  background-color: darkblue;
+  color: floralwhite;
+}
+
+.container .usertext {
+  color:black;
+}
+
+.headerNav a:link {
+  color: lightskyblue;
+}
+
+.headerNav a:visited {
+  color: lightseagreen;
+}
+
+.headerNav a:hover {
+  color: lightslategray;
+}
+
+/* content styles*/
+
+.content * {
+  margin: 0;
+  padding: 0;
+  background: #eee;
+}
+
+.content {
+  margin: 20px;
+  color: #111;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.content hr {
+  margin: 10px 0px 10px;
+}
+
+.instructors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.tas {
+  display: grid;
+  grid-template-columns: 1fr 1fr
+}
+
+.instructor {
+  margin: 20px;
+}
+
+.ta {
+  margin: 20px;
+}
+
+/* Footer styles*/
+.footer .menu, .footer .menu li, .footer .menu li a {
+  background-color: darkblue;
+  color:white;
+}
+
+.footer{
+  margin: 10px;
+  padding: 10px;
+  background-color: darkblue;
+  color:lightgrey;
+}
+
+.menu li a:link {
+  color: lightskyblue;
+}
+
+.menu li a:visited {
+  color: lightseagreen;
+}
+
+.menu li a:hover {
+  color: lightslategray;
+}

@@ -1,0 +1,128 @@
+* {
+  background-color: #eee;
+}
+
+.container h1,.container h5 {
+  margin: 10px;
+  padding: 10px;
+}
+
+.container h1,.container h5 {
+  /*darkslategrey*/
+  background-color: darkblue;
+  color: floralwhite;
+  text-align: start;
+}
+
+.container body {
+    background-color: cornsilk;
+}
+
+.headerNav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  font-size: 25px;
+  text-align: center;
+  background-color: darkblue;
+  height: 50px;
+  position: sticky;
+  top: 0px;
+}
+
+.headerNav a {
+  background-color: darkblue;
+  color: floralwhite;
+}
+
+.container .usertext {
+  color:black;
+}
+
+.headerNav a:link {
+  color: lightskyblue;
+}
+
+.headerNav a:visited {
+  color: lightseagreen;
+}
+
+.headerNav a:hover {
+  color: lightslategray;
+}
+
+/* Content styles*/
+.content {
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.content p {
+  margin: 10px 20px 10px 20px;
+}
+
+.content .table {
+  margin: 0px 20px 0px 20px;
+  border-left: 2px solid #58acb8;
+  border-right: 2px solid #58acb8;
+  border-bottom: 4px solid #1b5d96;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 80px 300px 1fr 1fr;
+  background-color: #58acb8;
+  border-bottom: 4px solid #1b5d96;
+  color: #eee;
+  font-size: 20px;
+  text-align: center;
+}
+
+.header div {
+  background: None;
+  padding: 10px 0px 10px;
+}
+
+.week {
+  display: grid;
+  grid-template-columns: 80px 300px 1fr 1fr;
+}
+
+.table .week:nth-child(even) {
+  background-color: white;
+}
+
+.content a, .content font {
+  background: None;
+}
+
+.td {
+  background: None;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #58acb8;
+}
+
+/* Footer styles*/
+.footer .menu, .footer .menu li, .footer .menu li a {
+  background-color: darkblue;
+  color:white;
+}
+
+.footer{
+  margin: 10px;
+  padding: 10px;
+  background-color: darkblue;
+  color:lightgrey;
+}
+
+.menu li a:link {
+  color: lightskyblue;
+}
+
+.menu li a:visited {
+  color: lightseagreen;
+}
+
+.menu li a:hover {
+  color: lightslategray;
+}

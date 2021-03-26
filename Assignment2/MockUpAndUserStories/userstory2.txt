@@ -1,0 +1,1 @@
+As a student user, there should be a "labs" link/button on the home page which shows all the lab files and solutions.

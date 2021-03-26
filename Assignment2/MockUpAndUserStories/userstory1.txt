@@ -1,0 +1,1 @@
+As a student user, there should be an "assignments" link/button on the home page which shows all the assignments and links to assignment files.
