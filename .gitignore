@@ -136,3 +136,9 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+#Additional ones in my directory:
+.DS_Store
+*.DS_Store
+*.DS_Store/
+.idea/
