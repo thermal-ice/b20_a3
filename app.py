@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, g
 app = Flask(__name__)
 
 # Setting the path to the database file
-DATABASE = os.path.join('.', 'database', 'a3_database')
+DATABASE = os.path.join('.', 'database', 'a3_database.db')
 
 def scoreStringParser(scoreString: str):
     return scoreString.split('/')
