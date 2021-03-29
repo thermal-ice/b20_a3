@@ -68,6 +68,15 @@ INSERT INTO Remarks VALUES (00128, 'Midterm', 'I want more marks for question 5'
 
 SELECT * from Feedback;
 
+-- Mandatory users to add:
+
+INSERT INTO Student VALUES (0600,'student1','student1','Bob','Jones',3,'96/88/87','68/80/72',75,80);
+INSERT INTO Student VALUES (0601,'student2','student2','Bob','Jones',3,'76/78/77','58/70/62',65,70);
+
+INSERT INTO Instructor VALUES (20000, 'instructor1', 'instructor1', 1);
+INSERT INTO Instructor VALUES (20001, 'instructor2', 'instructor2', 2);
+
+
 
 
 
