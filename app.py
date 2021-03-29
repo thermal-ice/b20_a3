@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, request, g, redirect, url_for, session
 
 app = Flask(__name__)
 
@@ -13,6 +13,8 @@ def scoreStringParser(scoreString: str):
 
 # Passing in the parser function for assignment/lab marks
 app.jinja_env.globals.update(scoreStringParser = scoreStringParser)
+
+
 
 
 
@@ -41,6 +43,26 @@ def close_connection(exception):
     db = getattr(g, '_database', None)
     if db is not None:
         db.close()
+
+
+
+app.secret_key = b'jenny'
+
+
+# @app.route('/index')
+# @app.route('/login', methods=['GET','POST'])
+# def login():
+#
+#     if request.method == 'POST':
+#         session.['username'] = request.form.get('username')
+#         return redirect(url_for('index'))
+#
+#     elif request.method == 'POST':
+#
+#
+#
+#             return f"username is: {username}, you have logged in with password {session[username]}"
+#
 
 
 
