@@ -64,6 +64,50 @@ app.secret_key = b'jenny'
 #             return f"username is: {username}, you have logged in with password {session[username]}"
 #
 
+@app.route('/login')
+@app.route('/login/<loginresult>')
+def loginpage(loginresult = 'good'):
+    if 'username' in session:
+        return f"Hi {session['username']}, you have logged on"
+
+    if loginresult == 'bad':
+        return render_template('login.html',firstLoginAttempt = False)
+
+    return render_template('login.html',firstLoginAttempt = True)
+
+
+@app.route('/logout')
+def logout():
+    if 'username' in session:
+        usernameVal = session['username']
+        session.pop('username',None)
+        return f"hey {usernameVal}, you have successfully logged off"
+    else:
+        return "You are not logged in"
+
+
+
+
+@app.route('/loginresult', methods=['POST'])
+def loginresult():
+    potentialusername = request.form.get('username')
+    potentialpassword = request.form.get('password')
+    db = get_db()
+    cur1 = db.execute('SELECT * FROM Student WHERE username=? AND password=?',
+               (potentialusername, potentialpassword))
+
+    cur2 = db.execute('SELECT * FROM Instructor WHERE username=? AND password=?',
+               (potentialusername, potentialpassword))
+
+    success = cur1.fetchone() or cur2.fetchone()
+    db.close()
+
+    if success:
+        session['username'] = potentialusername
+        return f"Hi {potentialusername}, you have logged on"
+    else:
+        return redirect(url_for('loginpage',loginresult='bad'))
+
 
 
 
