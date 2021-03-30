@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p>my variable that i passed in is : {{ var1[0] }}</p>
+
+{% for elem in var1 %}
+
+    <p> the value of i is {{ elem }}</p>
+
+{% endfor %}
+
+<table>
+
+    {% for elem in var1 %}
+
+
+    <tr>
+        <td>
+            {{ elem }}
+        </td>
+
+    </tr>
+
+    {% endfor %}
+</table>
+
+</body>
+</html>

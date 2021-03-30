@@ -109,7 +109,10 @@ def loginresult():
         return redirect(url_for('loginpage',loginresult='bad'))
 
 
-
+@app.route('/example')
+def example():
+    myvar = ['hello', 'guys','bye']
+    return render_template('example.html', var1 = myvar)
 
 
 @app.route('/')
