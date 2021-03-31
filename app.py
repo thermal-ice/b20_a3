@@ -46,6 +46,7 @@ def close_connection(exception):
 
 
 
+
 app.secret_key = b'jenny'
 
 
@@ -67,6 +68,9 @@ app.secret_key = b'jenny'
 @app.route('/login')
 @app.route('/login/<loginresult>')
 def loginpage(loginresult = 'good'):
+
+    #sessions = {'username': 'student1'}
+
     if 'username' in session:
         return f"Hi {session['username']}, you have logged on"
 
@@ -81,6 +85,7 @@ def logout():
     if 'username' in session:
         usernameVal = session['username']
         session.pop('username',None)
+        session.pop('userid',None)
         return f"hey {usernameVal}, you have successfully logged off"
     else:
         return "You are not logged in"
@@ -92,6 +97,9 @@ def logout():
 def loginresult():
     potentialusername = request.form.get('username')
     potentialpassword = request.form.get('password')
+
+    #First get the user submitted username and password
+
     db = get_db()
     cur1 = db.execute('SELECT * FROM Student WHERE username=? AND password=?',
                (potentialusername, potentialpassword))
@@ -99,12 +107,21 @@ def loginresult():
     cur2 = db.execute('SELECT * FROM Instructor WHERE username=? AND password=?',
                (potentialusername, potentialpassword))
 
-    success = cur1.fetchone() or cur2.fetchone()
+    cur1res = cur1.fetchone()
+    cur2res = cur2.fetchone()
+    success = cur1res or cur2res
     db.close()
+
+    #Check if the username and password are correct
 
     if success:
         session['username'] = potentialusername
-        return f"Hi {potentialusername}, you have logged on"
+
+        if cur1res:
+            session['userid'] = cur1res['student_id']
+        else:
+            session['userid'] = cur1res['instructor_id']
+        return f"Hi {potentialusername}, you have logged on, with userid {session['userid']}"
     else:
         return redirect(url_for('loginpage',loginresult='bad'))
 
@@ -134,6 +151,32 @@ def getAllFeedback():
 def getAllRemarks():
     return query_db('SELECT * FROM Remarks').__str__()
 
+
+
+
+coursework = ['Assignment1','Assignment2','Assignment3',
+              'Lab1','Lab2','Lab3',
+              'Midterm exam',
+              'Final exam'
+              ]
+
+AssignmentOrLabs = ['Assignment1','Assignment2','Assignment3',
+              'Lab1','Lab2','Lab3',]
+
+@app.route('/remarkrequest', methods=['GET'])
+def remarkrequest():
+    return render_template('remarkRequest.html', courseworklist= coursework)
+
+@app.route('/remarkresult', methods=['POST'])
+def remarkresult():
+    courseworkToRemark = request.form.get('thecoursework')
+    explanationForRemark = request.form.get('remarkexplanation')
+
+
+
+    query_db("INSERT INTO Remarks VALUES (?,?,?)",(session['userid'],courseworkToRemark,explanationForRemark))
+
+    return f"The work to remark is: {courseworkToRemark}, the explantion is {explanationForRemark}"
 
 
 if __name__ == "__main__":

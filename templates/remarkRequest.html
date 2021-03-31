@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remark requests</title>
+</head>
+<body>
+
+    <form action="remarkresult" method="post">
+
+        <label for="thecoursework">Pick a coursework to get remarked:</label>
+        <select name="thecoursework" id="thecoursework">
+            {% for courseworkoption in courseworklist %}
+                <option value="{{ courseworkoption }}">{{ courseworkoption }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+
+        <label for="remarkexplanation">Explanation for remark request:</label>
+        <br>
+        <textarea id="remarkexplanation" name="remarkexplanation" rows="4" cols="60"> Explanation for remark</textarea>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
