@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Marks</title>
+</head>
+<body>
+    {% for key in studentMarkDict %}
+        {% if key=='labMarks' or key=='assignmentMarks' %}
+            {% set parsedMarksList = scoreStringParser(studentMarkDict[key]) %}
+                {% for i in range(parsedMarksList | length) %}
+                    {% set j = i + 1 %}
+                    <p> Coursework: {{ key }} {{ j }}, Score: {{ parsedMarksList[i] }}</p>
+
+                {% endfor %}
+
+        {% else %}
+
+            <p>Coursework: {{ key }}, Score: {{ studentMarkDict[key] }} </p>
+        {% endif %}
+
+
+
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change marks</title>
+</head>
+<body>
+
+{#Need to actually implement#}
+<label for="studentid">Pick a student:</label>
+        <select name="studentid" id="studentid">
+            {% for student in studentList %}
+                <option value="{{ courseworkoption }}">{{ courseworkoption }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+<label for="thecoursework">Pick a coursework to get remarked:</label>
+        <select name="thecoursework" id="thecoursework">
+            {% for courseworkoption in courseworklist %}
+                <option value="{{ courseworkoption }}">{{ courseworkoption }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
+
+
+</body>
+</html>
