@@ -73,5 +73,15 @@ def logout():
 	session.pop('username', None)
 	return redirect(url_for('login'))
 
+@app.route('/inMarks')
+def inMarks():
+	var1=['1','user','password','first','last', '001', '90', '100', '99', '80', 
+	'2','user2','password','first','last', '001', '90', '100', '99', '80',
+	'3','user3','password','first','last', '001', '90', '100', '99', '80',
+	'4','user4','password','first','last', '001', '90', '100', '99', '80',
+	'5','user5','password','first','last', '001', '90', '100', '99', '80']
+	counter=0
+	return render_template("instructorMarks.html", myVar = var1, count = counter)
+
 if __name__=="__main__":
 	app.run(debug=True,host='0.0.0.0')

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>instructorMarks</title>
+    <link rel="stylesheet" href="/static/instructorMarks.css" type="text/css">
+  </head>
+
+  <body>
+      <div class="content">
+        <h1>Student marks</h1>
+
+        <div class="table">
+          <div class="header">
+            <div>student_id</div> 
+            <div>username</div> 
+            <div>password</div> 
+            <div>first Name</div> 
+            <div>last Name</div> 
+            <div>lecture Section</div> 
+            <div>assignment Marks</div> 
+            <div>lab Marks</div> 
+            <div>midterm Mark</div> 
+            <div>final Exam</div> 
+          </div>
+
+
+          <div class="students">
+            {% for elem in myVar %}
+              <div class="gd"> {{ elem }}</div>
+            {% endfor %}
+          </div>
+        </div>
+        
+      </div>
+
+  </body>
