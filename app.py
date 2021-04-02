@@ -178,6 +178,8 @@ AssignmentOrLabs = ['A1', 'A2', 'A3',
 AssignmentAndLabsToIndex = {'A1':0, 'A2':1, 'A3':2,
                     'Lab1': 0, 'Lab2': 1, 'Lab3': 3}
 
+feedback_id = 1
+
 @app.route('/remarkrequest', methods=['GET'])
 def remarkrequest():
     return render_template('remarkRequest.html', courseworklist=coursework)
@@ -193,6 +195,22 @@ def remarkresult():
 
     return f"The work to remark is: {courseworkToRemark}, the explantion is {explanationForRemark}"
 
+@app.route('/feedback', methods=['GET'])
+def remarkrequest():
+    return render_template('feedback.html')
+
+
+@app.route('/feedback_result', methods=['POST'])
+def feedback_result():
+    feedback_text = request.form.get('feedback_text')
+
+    result = query_db("select * from Feedback")
+    num = len(result) + 1  # feedback_id
+
+    insertIntoDatabase('INSERT INTO Feedback VALUES (?,?)', (
+        num, feedback_text))
+
+    return f"The feedback for this course is: {feedback_text}"
 
 # The score for the individual student
 @app.route('/scores', methods=['GET'])
