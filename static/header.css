@@ -1,0 +1,47 @@
+.container h1,.container h5 {
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  .container h1,.container h5 {
+    /*darkslategrey*/
+    background-color: darkblue;
+    color: floralwhite;
+    text-align: start;
+  }
+
+  .container body {
+      background-color: cornsilk;
+  }
+
+  .container{
+    background-color: lightgrey;
+  }
+
+  .container .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    color: floralwhite;
+    text-align: center;
+    font-size: 30px;
+
+    background-color: darkblue;
+
+    width: 96%;
+  }
+
+  .container .usertext {
+    color:black;
+  }
+
+  .container a:link {
+    color: lightskyblue;
+  }
+
+  .container a:visited {
+    color: lightseagreen;
+  }
+
+  .container a:hover {
+    color: lightslategray;
+  }

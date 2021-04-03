@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ <head>
+   <meta charset="utf-8">
+   <title>Flask Parent Template</title>
+   <link rel="stylesheet" href="/static/header.css" type="text/css">
+ </head>
+ <body>
+    <header>
+      <div class="container">
+        <h1 class="logo">CSCB63 -- Design and Analysis of Data Structures</h1>
+        <strong><nav>
+          <div class="grid">
+            <h5><a href="{{ url_for('index') }}">Home</a></h5>
+            <h5><a href="{{ url_for('Assignments') }}">Assignments</a></h5>
+            <h5><a href="{{ url_for('lecture') }}">Lectures</a></h5>
+            <h5><a href="{{ url_for('tutorials') }}">tutorials</a></h5>
+            <h5><a href="https://piazza.com/class/">Piazza</a></h5>
+            <h5><a href="{{ url_for('labs') }}">labs</a></h5>
+          </div>
+        </nav></strong>
+      </div>
+    </header>
+    
+    {% block content %}
+    {% endblock %}
+    
+ </body>
+</html>

@@ -30,7 +30,7 @@
 
 .header {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 70px 1fr ;
     background-color: #58acb8;
     border-bottom: 4px solid #1b5d96;
     color: #eee;
@@ -43,7 +43,12 @@
     padding: 10px 0px 10px;
 }
 
-.students {
+.feedback {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 70px 1fr;
+}
+
+.gd {
+    padding: 10px;
+    margin: 10px;
 }

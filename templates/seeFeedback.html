@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>instructorMarks</title>
+    <link rel="stylesheet" href="/static/seeFeedback.css" type="text/css">
+  </head>
+
+  <body>
+    <div class="content">
+        <h1>Feedback from your students</h1>
+
+        <div class="table">
+            <div class="header">
+                <div>feedback id</div> 
+                <div>feedback</div> 
+            </div>
+
+
+            <div class="feedback">
+                
+                {% for elem in mydict %}
+                    {% for d in elem.values() %}
+                        <div class = 'gd'>{{d}}</div>
+                    <!--{% for d in elem.value %}-->
+                    
+                    <!--{% endfor %}-->
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+  </body>

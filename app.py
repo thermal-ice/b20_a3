@@ -158,8 +158,8 @@ def getStudentMarks():
 
 @app.route('/feedback')
 def getAllFeedback():
-    return query_db('SELECT * FROM Feedback').__str__()
-
+    dict1 = query_db('SELECT * FROM Feedback')
+    return render_template('seeFeedback.html', mydict=dict1)
 
 @app.route('/remarks')
 def getAllRemarks():
@@ -195,9 +195,9 @@ def remarkresult():
 
     return f"The work to remark is: {courseworkToRemark}, the explantion is {explanationForRemark}"
 
-@app.route('/feedback', methods=['GET'])
-def remarkrequest():
-    return render_template('feedback.html')
+#@app.route('/feedback', methods=['GET'])
+#def remarkrequest():
+    #return render_template('feedback.html')
 
 
 @app.route('/feedback_result', methods=['POST'])

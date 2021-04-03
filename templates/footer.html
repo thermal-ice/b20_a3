@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ <head>
+   <meta charset="utf-8">
+   <title>Footer Template</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+ </head>
+ <body>
+    <header>
+      <div class="footer">
+        <strong><nav>
+            <ul class="menu">
+                <li><a href="https://www.utsc.utoronto.ca/cms/faculty-of-computer-science">Faculty of computer Science</a></li>
+                <li><a href="{{ url_for('feedback') }}">Anonymous feedback</a></li>
+                <li><a href="{{ url_for('CourseTeam') }}">Course Team</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+              </ul>
+        </nav></strong>
+    </div>
+    </header>
+    
+ </body>
+</html>
