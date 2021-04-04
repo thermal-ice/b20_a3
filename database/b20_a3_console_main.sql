@@ -1,7 +1,8 @@
 CREATE TABLE Feedback(
     feedback_id INTEGER PRIMARY KEY,
-    feedback_text TEXT NOT NULL
-
+    instructor_id INTEGER NOT NULL,
+    feedback_text TEXT NOT NULL,
+    FOREIGN KEY (instructor_id) references Instructor(instructor_id)
 );
 
 CREATE TABLE Instructor(
@@ -33,14 +34,11 @@ CREATE TABLE Remarks(
 );
 
 
-
-
-
-INSERT INTO Feedback(feedback_text) VALUES ('We need more class engagement');
-INSERT INTO Feedback(feedback_text) VALUES ('We need more interesting TA');
-INSERT INTO Feedback(feedback_text) VALUES ('Instructor could set up breakout rooms');
-INSERT INTO Feedback(feedback_text) VALUES ('The assignment is too long');
-INSERT INTO Feedback(feedback_text) VALUES ('Time is not sufficient for our midterm');
+INSERT INTO Feedback(instructor_id, feedback_text) VALUES (10000,'We need more class engagement');
+INSERT INTO Feedback(instructor_id, feedback_text) VALUES (10001, 'We need more interesting TA');
+INSERT INTO Feedback(instructor_id, feedback_text) VALUES (20000,'Instructor could set up breakout rooms');
+INSERT INTO Feedback(instructor_id, feedback_text) VALUES (20001,'The assignment is too long');
+INSERT INTO Feedback(instructor_id, feedback_text) VALUES (20000,'Time is not sufficient for our midterm');
 
 
 INSERT INTO Instructor VALUES (10000, 'LyndaBarnes', 'GraduateOffice', 1);

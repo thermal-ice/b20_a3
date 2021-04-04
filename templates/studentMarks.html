@@ -7,7 +7,7 @@
 <body>
     {% for key in studentMarkDict %}
         {% if key=='labMarks' or key=='assignmentMarks' %}
-            {% set parsedMarksList = scoreStringParser(studentMarkDict[key]) %}
+            {% set parsedMarksList = scoreStringParser(studentMarkDict[key]) %} '50/60/50' -> ['50', '60', '50']
                 {% for i in range(parsedMarksList | length) %}
                     {% set j = i + 1 %}
                     <p> Coursework: {{ key }} {{ j }}, Score: {{ parsedMarksList[i] }}</p>
@@ -18,8 +18,6 @@
 
             <p>Coursework: {{ key }}, Score: {{ studentMarkDict[key] }} </p>
         {% endif %}
-
-
 
     {% endfor %}
 </body>

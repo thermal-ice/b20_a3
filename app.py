@@ -6,7 +6,8 @@ from flask import Flask, render_template, request, g, redirect, url_for, session
 app = Flask(__name__)
 
 # Setting the path to the database file
-DATABASE = os.path.join('.', 'database', 'a3_database.db')
+# DATABASE = os.path.join('.', 'database', 'a3_database.db')
+DATABASE = os.path.join('.', 'a3_database.db')
 
 
 def scoreStringParser(scoreString: str):
@@ -202,15 +203,14 @@ def feedback():
 
 @app.route('/feedback_result', methods=['POST'])
 def feedback_result():
-    feedback_text = request.form.get('feedback_text')
+    feedbackText = request.form.get('feedback_text')
+    print(feedbackText)
 
-    result = query_db("select * from Feedback")
-    num = len(result) + 1  # feedback_id
+    # result = query_db("select * from Feedback")
+    # num = len(result) + 1  # feedback_id
+    insertIntoDatabase('INSERT INTO Feedback(feedback_text) VALUES (?)', (feedbackText.__str__()))
 
-    insertIntoDatabase('INSERT INTO Feedback VALUES (?,?)', (
-        num, feedback_text))
-
-    return f"The feedback for this course is: {feedback_text}"
+    return f"The feedback for this course is: {feedbackText}"
 
 # The score for the individual student
 @app.route('/scores', methods=['GET'])
@@ -223,9 +223,9 @@ def scores():
     marks = getSingleRowFromDatabase("SELECT assignmentMarks,labMarks,midtermMark,finalExam FROM Student WHERE student_id=?",(session['userid'],))
 
 
-    return render_template('studentMarks.html',studentMarkDict= marks)
+    # return render_template('studentMarks.html',studentMarkDict= marks)
 
-
+    return marks.__str__()
 
 
 if __name__ == "__main__":
