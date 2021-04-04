@@ -20,8 +20,12 @@ CREATE TABLE Student(
     firstName TEXT NOT NULL ,
     lastName TEXT NOT NULL ,
     lectureSection INTEGER,
-    assignmentMarks TEXT,
-    labMarks TEXT,
+    A1_mark INTEGER,
+    A2_mark INTEGER,
+    A3_mark INTEGER,
+    Lab1_mark INTEGER,
+    Lab2_mark INTEGER,
+    Lab3_mark INTEGER,
     midtermMark INTEGER ,
     finalExam INTEGER
 );
@@ -32,7 +36,6 @@ CREATE TABLE Remarks(
     remarkMessage TEXT NOT NULL ,
     FOREIGN KEY (student_id) references Student(student_id)
 );
-
 
 INSERT INTO Feedback(instructor_id, feedback_text) VALUES (10000,'We need more class engagement');
 INSERT INTO Feedback(instructor_id, feedback_text) VALUES (10001, 'We need more interesting TA');
