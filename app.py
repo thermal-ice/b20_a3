@@ -151,7 +151,7 @@ def root():
 
 @app.route('/studentmarks')
 def getStudentMarks():
-    if session['userId'] != 'instructor':
+    if session['userType'] != 'instructor':
         return "You must be an instructor to see this page"
     return query_db('SELECT * FROM Student').__str__()
 
@@ -195,9 +195,9 @@ def remarkresult():
 
     return f"The work to remark is: {courseworkToRemark}, the explantion is {explanationForRemark}"
 
-#@app.route('/feedback', methods=['GET'])
-#def remarkrequest():
-    #return render_template('feedback.html')
+@app.route('/submitFeedback', methods=['GET'])
+def feedback():
+    return render_template('feedback.html')
 
 
 @app.route('/feedback_result', methods=['POST'])
