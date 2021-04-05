@@ -8,9 +8,17 @@
 
     <form action="feedback_result" method="post">
 
+        <label for="theinstructor">Pick an instructor to send the feedback to:</label>
+        <select name="theinstructor" id="theinstructor">
+            {% for instructoroption in instructorlist %}
+                <option value="{{ instructoroption }}">{{ instructoroption }}</option>
+            {% endfor %}
+        </select>
+        <br>
+
         <label for="feedback_text">Please enter your feedback about the course below:</label>
         <br>
-        <textarea id="feedback_text" name="feedback_text" rows="4" cols="60"> Feedback here:</textarea>
+        <textarea id="feedback_text" name="feedback_text" rows="4" cols="60" placeholder="Feedback here: "></textarea>
         <br>
         <input type="submit" value="Submit">
     </form>
