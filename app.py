@@ -144,6 +144,7 @@ def example():
 
 
 @app.route('/')
+@app.route("/index")
 def root():
     result = query_db("select * from Instructor")
     return result.__str__()
@@ -151,9 +152,10 @@ def root():
 
 @app.route('/studentmarks')
 def getStudentMarks():
-    if session['userId'] != 'instructor':
-        return "You must be an instructor to see this page"
-    return query_db('SELECT * FROM Student').__str__()
+    #if session['userId'] != 'instructor':
+        #return "You must be an instructor to see this page"
+    mark1 = query_db('SELECT * FROM Student')
+    return render_template('instructorMarks.html', marks = mark1)
 
 
 @app.route('/feedback')

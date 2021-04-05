@@ -10,6 +10,24 @@
     text-align: start;
   }
 
+  .container item1 {
+    text-align: right;
+  }
+
+  .container item2 {
+    text-align: left;
+  }
+
+  .container .intro {
+    color:black;
+    font-size: large;
+    margin: 10px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+  }
+
   .container body {
       background-color: cornsilk;
   }
