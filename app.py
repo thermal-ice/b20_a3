@@ -10,15 +10,15 @@ app = Flask(__name__)
 DATABASE = os.path.join('.', 'assignment3.db')
 
 
-def scoreStringParser(scoreString: str):
-    return scoreString.split('/')
-
-def joinScoreList(scoreList: list):
-    return '/'.join(scoreList)
-
-
-# Passing in the parser function for assignment/lab marks
-app.jinja_env.globals.update(scoreStringParser=scoreStringParser)
+# def scoreStringParser(scoreString: str):
+#     return scoreString.split('/')
+#
+# def joinScoreList(scoreList: list):
+#     return '/'.join(scoreList)
+#
+#
+# # Passing in the parser function for assignment/lab marks
+# app.jinja_env.globals.update(scoreStringParser=scoreStringParser)
 
 
 def get_db():
