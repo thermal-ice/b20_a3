@@ -50,16 +50,16 @@ INSERT INTO Instructor VALUES (10002, 'PaulGries', 'pgries', 2);
 INSERT INTO Instructor VALUES (10003, 'DanHeap', 'heapify', 2);
 INSERT INTO Instructor VALUES (10004, 'KarenReid', 'reid', 3);
 
-INSERT INTO Student VALUES (00128, 'Zhang', 'Zhang00', 'Larry', 'Zhang',2, '86/78/59', '68/80/72', 86, 95);
-INSERT INTO Student VALUES (00345, 'Shankar', 'Shankar00', 'Tom', 'Shankar',2, '75/58/93','84/93/89', 85, 75);
-INSERT INTO Student VALUES (00991,'Brandt', 'Brandt00', 'Dan', 'Brandt', 1, '68/80/72', '90/85/93', 78, 85);
-INSERT INTO Student VALUES (00121, 'Chavez', 'Chavez00', 'Tarek', 'Chavez',1, '90/85/93','89/94/78', 85, 96);
-INSERT INTO Student VALUES (00553, 'Peltier', 'Peltier00', 'Ashton', 'Peltier',2, '92/69/78','96/88/87', 85, 79);
-INSERT INTO Student VALUES (00678, 'Levy', 'Levy00', 'Ravin', 'Levy',3, '84/93/89','84/80/72',87, 90);
-INSERT INTO Student VALUES (00321, 'Williams', 'Williams00', 'Allan','Williams', 1, '94/91/88','68/80/72',79,93);
-INSERT INTO Student VALUES (00739, 'Sanchez', 'Sanchez00', 'Michael', 'Sanchez',3, '87/79/95', '78/87/76',83,78);
-INSERT INTO Student VALUES (00557, 'Snow', 'Snow00', 'White', 'Snow', 3, '83/92/86', '84/93/89', 89, 93);
-INSERT INTO Student VALUES (00543, 'Brown', 'Brown00', 'Marsha', 'Brown', 2, '96/88/87','68/80/72',92, 79);
+INSERT INTO Student VALUES (00128, 'Zhang', 'Zhang00', 'Larry', 'Zhang',2, '86', '78', '59', '68', '80', '72', 86, 95);
+INSERT INTO Student VALUES (00345, 'Shankar', 'Shankar00', 'Tom', 'Shankar',2, '75', '58', '93','84', '93', '89', 85, 75);
+INSERT INTO Student VALUES (00991,'Brandt', 'Brandt00', 'Dan', 'Brandt', 1, '68', '80', '72', '90', '85', '93', 78, 85);
+INSERT INTO Student VALUES (00121, 'Chavez', 'Chavez00', 'Tarek', 'Chavez',1, '90', '85', '93','89', '94', '78', 85, 96);
+INSERT INTO Student VALUES (00553, 'Peltier', 'Peltier00', 'Ashton', 'Peltier',2, '92', '69', '78','96', '88', '87', 85, 79);
+INSERT INTO Student VALUES (00678, 'Levy', 'Levy00', 'Ravin', 'Levy',3, '84', '93', '89','84', '80', '72', 87, 90);
+INSERT INTO Student VALUES (00321, 'Williams', 'Williams00', 'Allan','Williams', 1, '98', '91', '88','68', '80', '72',79,93);
+INSERT INTO Student VALUES (00739, 'Sanchez', 'Sanchez00', 'Michael', 'Sanchez',3, '87', '79', '95', '78', '87', '76',83,78);
+INSERT INTO Student VALUES (00557, 'Snow', 'Snow00', 'White', 'Snow', 3, '83', '92', '86', '84', '93', '89', 89, 93);
+INSERT INTO Student VALUES (00543, 'Brown', 'Brown00', 'Marsha', 'Brown', 2, '96', '88', '87','68', '80', '72',92, 79);
 
 INSERT INTO Remarks VALUES (00128, 'A2', 'I want more marks');
 INSERT INTO Remarks VALUES (00128, 'Midterm', 'I want even more marks');
@@ -71,8 +71,8 @@ SELECT * from Feedback;
 
 -- Mandatory users to add:
 
-INSERT INTO Student VALUES (0600,'student1','student1','Bob','Jones',3,'96/88/87','68/80/72',75,80);
-INSERT INTO Student VALUES (0601,'student2','student2','Bob','Jones',3,'76/78/77','58/70/62',65,70);
+INSERT INTO Student VALUES (0600,'student1','student1','Bob','Jones',3,'96', '88', '87','68', '80', '72',75,80);
+INSERT INTO Student VALUES (0601,'student2','student2','Bob','Jones',3,'76', '78', '77','58', '70', '62',65,70);
 
 INSERT INTO Instructor VALUES (20000, 'instructor1', 'instructor1', 1);
 INSERT INTO Instructor VALUES (20001, 'instructor2', 'instructor2', 2);

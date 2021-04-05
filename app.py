@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Setting the path to the database file
 # DATABASE = os.path.join('.', 'database', 'a3_database.db')
-DATABASE = os.path.join('.', 'a3_database.db')
+DATABASE = os.path.join('.', 'assignment3.db')
 
 
 def scoreStringParser(scoreString: str):
@@ -179,7 +179,7 @@ AssignmentOrLabs = ['A1', 'A2', 'A3',
 AssignmentAndLabsToIndex = {'A1':0, 'A2':1, 'A3':2,
                     'Lab1': 0, 'Lab2': 1, 'Lab3': 3}
 
-feedback_id = 1
+instructorlist = ['LyndaBarnes', 'SteveEngels', 'PaulGries', 'DanHeap', 'KarenReid']
 
 @app.route('/remarkrequest', methods=['GET'])
 def remarkrequest():
@@ -198,19 +198,23 @@ def remarkresult():
 
 @app.route('/submitFeedback', methods=['GET'])
 def feedback():
-    return render_template('feedback.html')
+    if session['userType'] != 'student':
+        return "You must be an student to see this page"
+    return render_template('feedback.html', instructorlist=instructorlist)
 
 
 @app.route('/feedback_result', methods=['POST'])
 def feedback_result():
+
+    instructorToSend = request.form.get('theinstructor')
+    instructor_row = query_db('select * from instructor where username=?', [instructorToSend], one=True)
+    instructor_id = instructor_row['instructor_id']
     feedbackText = request.form.get('feedback_text')
-    print(feedbackText)
+    # print(feedbackText)
+    insertIntoDatabase('INSERT INTO Feedback(instructor_id, feedback_text) VALUES (?, ?)', (instructor_id, feedbackText))
 
-    # result = query_db("select * from Feedback")
-    # num = len(result) + 1  # feedback_id
-    insertIntoDatabase('INSERT INTO Feedback(feedback_text) VALUES (?)', (feedbackText.__str__()))
-
-    return f"The feedback for this course is: {feedbackText}"
+    return f"Your feedback has been submitted successfully! \nTo instructor: {instructorToSend}, " \
+           f"with the following feedback: {feedbackText}"
 
 # The score for the individual student
 @app.route('/scores', methods=['GET'])
@@ -220,7 +224,8 @@ def scores():
     if session['userType'] != 'student':
         return "You must be a student to see this page"
 
-    marks = getSingleRowFromDatabase("SELECT assignmentMarks,labMarks,midtermMark,finalExam FROM Student WHERE student_id=?",(session['userid'],))
+    marks = getSingleRowFromDatabase("SELECT A1_mark, A2_mark, A3_mark, Lab1_mark, Lab2_mark, Lab3_mark, midtermMark,finalExam "
+                                     "FROM Student WHERE student_id=?",(session['userid'],))
 
 
     # return render_template('studentMarks.html',studentMarkDict= marks)
