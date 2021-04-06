@@ -3,15 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title>LoginExample</title>
-    <link rel="stylesheet" href="/static/loginPage.css" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='loginPage.css') }}" type="text/css">
   </head>
 
   <body>
     <h1>CSCB63 -- Design and Analysis of Data Structures</h1>
 
+    {% if loginStatus == 1 %}
+    <h2>You have given an incorrect username or password, please try again</h2>
+    {% endif %}
+
+    {% if loginStatus == 2 %}
+    <h2>You must be logged in to view this page</h2>
+    {% endif %}
+
+    {% if loginStatus == 3 %}
+    <h2>You have successfully logged out</h2>
+    {% endif %}
+
     <h3>Sign in to your account:</h3>
 
-    <form method="post">
+    <form action="/loginresult" method="post">
         <p>Enter your username: <input type=text name=username>
         <p>Enter your password: <input type=password name=password>
         <p><input type=submit value=Submit>

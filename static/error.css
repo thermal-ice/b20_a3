@@ -1,0 +1,23 @@
+.content {
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.content h1{
+    margin: 10px;
+    padding: 10px;
+    background-color: darkblue;
+    color: floralwhite;
+    text-align: start;
+    font-size: x-large;
+
+}
+
+.content body{
+    background-color: cornsilk;
+}
+
+.content p {
+    margin: 10px 20px 10px 20px;
+    color: darkblue;
+  }
