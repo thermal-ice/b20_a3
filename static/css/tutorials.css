@@ -1,0 +1,59 @@
+.content * {
+  margin: 0;
+  padding: 0;
+  background: #eee;
+}
+
+.content {
+  margin: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.content p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.table {
+    width: 1000px;
+    align-self: center;
+    margin-top: 20px;
+    border-left: 2px solid #58acb8;
+    border-right: 2px solid #58acb8;
+    border-bottom: 4px solid #1b5d96;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 80px 300px 1fr 1fr;
+  background-color: #58acb8;
+  border-bottom: 4px solid #1b5d96;
+  color: #eee;
+  font-size: 20px;
+  text-align: center;
+}
+
+.header div {
+  background: None;
+  padding: 10px 0px 10px;
+}
+
+.week {
+    display: grid;
+    grid-template-columns: 80px 300px 1fr 1fr;
+}
+
+.table .week:nth-child(even) {
+  background-color: white;
+}
+
+.content a, .content font {
+  background: None;
+}
+
+.td {
+  background: None;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #58acb8;
+}

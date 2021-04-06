@@ -6,8 +6,8 @@ from flask import Flask, render_template, request, g, redirect, url_for, session
 app = Flask(__name__)
 
 # Setting the path to the database file
+# DATABASE = os.path.join('.', 'database', 'a3_database.db')
 DATABASE = os.path.join('.', 'assignment3.db')
-
 
 
 def scoreStringParser(scoreString: str):
@@ -19,7 +19,6 @@ def joinScoreList(scoreList: list):
 
 # Passing in the parser function for assignment/lab marks
 app.jinja_env.globals.update(scoreStringParser=scoreStringParser)
-
 
 
 def get_db():
@@ -83,40 +82,30 @@ app.secret_key = b'jenny'
 #             return f"username is: {username}, you have logged in with password {session[username]}"
 #
 
-def userHasNotLoggedIn():
-    return 'username' not in session
-
-
-
 @app.route('/login')
 @app.route('/login/<loginresult>')
 def loginpage(loginresult='good'):
     # sessions = {'username': 'student1'}
 
-    if not userHasNotLoggedIn():
+    if 'username' in session:
         return f"Hi {session['username']}, you have logged on"
 
     if loginresult == 'bad':
-        return render_template('loginPage.html', loginStatus=1)
-    if loginresult == 'notLoggedIn':
-        return render_template('loginPage.html',loginStatus=2)
-    if loginresult == 'loggedOut':
-        return render_template('loginPage.html', loginStatus=3)
+        return render_template('login.html', firstLoginAttempt=False)
 
-    return render_template('loginPage.html', loginStatus=0)
+    return render_template('login.html', firstLoginAttempt=True)
 
 
 @app.route('/logout')
 def logout():
-    if userHasNotLoggedIn():
-        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
-
-
-    session.pop('username', None)
-    session.pop('userid', None)
-    session.pop('userType', None)
-    return redirect(url_for('loginpage',loginresult='loggedOut'))
-
+    if 'username' in session:
+        usernameVal = session['username']
+        session.pop('username', None)
+        session.pop('userid', None)
+        session.pop('userType', None)
+        return f"hey {usernameVal}, you have successfully logged off"
+    else:
+        return "You are not logged in"
 
 
 @app.route('/loginresult', methods=['POST'])
@@ -144,7 +133,7 @@ def loginresult():
         else:
             session['userid'] = cur2res['instructor_id']
             session['userType'] = 'instructor'
-        return render_template('index.html')
+        return f"Hi {potentialusername}, you have logged on, with userid {session['userid']}"
     else:
         return redirect(url_for('loginpage', loginresult='bad'))
 
@@ -156,43 +145,27 @@ def example():
 
 
 @app.route('/')
+@app.route("/index")
 def root():
-    return redirect(url_for('loginpage'))
+    result = query_db("select * from Instructor")
+    return result.__str__()
 
 
 @app.route('/studentmarks')
 def getStudentMarks():
-    if userHasNotLoggedIn():
-        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
-
-
-    if session['userType'] != 'instructor':
-        return render_template('error.html', errorMsg="You must be an instructor to see this page")
-
-
+    #if session['userId'] != 'instructor':
+        #return "You must be an instructor to see this page"
     mark1 = query_db('SELECT * FROM Student')
     return render_template('instructorMarks.html', marks = mark1)
 
 
 @app.route('/feedback')
 def getAllFeedback():
-    if userHasNotLoggedIn():
-        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
-
-    if session['userType'] != 'student':
-        return render_template('error.html', errorMsg="You must be an student to see this page")
-
     dict1 = query_db('SELECT * FROM Feedback')
     return render_template('seeFeedback.html', mydict=dict1)
 
 @app.route('/remarks')
 def getAllRemarks():
-
-    if userHasNotLoggedIn():
-        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
-
-
-
     return query_db('SELECT * FROM Remarks').__str__()
 
 
@@ -205,23 +178,18 @@ coursework = ['A1', 'A2', 'A3',
 AssignmentOrLabs = ['A1', 'A2', 'A3',
                     'Lab1', 'Lab2', 'Lab3', ]
 
+AssignmentAndLabsToIndex = {'A1':0, 'A2':1, 'A3':2,
+                    'Lab1': 0, 'Lab2': 1, 'Lab3': 3}
+
 instructorlist = ['LyndaBarnes', 'SteveEngels', 'PaulGries', 'DanHeap', 'KarenReid']
 
 @app.route('/remarkrequest', methods=['GET'])
 def remarkrequest():
-
-    if userHasNotLoggedIn():
-        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
-
     return render_template('remarkRequest.html', courseworklist=coursework)
 
 
 @app.route('/remarkresult', methods=['POST'])
 def remarkresult():
-
-    if userHasNotLoggedIn():
-        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
-
     courseworkToRemark = request.form.get('thecoursework')
     explanationForRemark = request.form.get('remarkexplanation')
 
@@ -232,19 +200,13 @@ def remarkresult():
 
 @app.route('/submitFeedback', methods=['GET'])
 def feedback():
-    if userHasNotLoggedIn():
-        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
-
     if session['userType'] != 'student':
         return "You must be an student to see this page"
-    return render_template('feedback.html', instructorlist=instructorlist) #Why the hardcode?
+    return render_template('feedback.html', instructorlist=instructorlist)
 
 
 @app.route('/feedback_result', methods=['POST'])
 def feedback_result():
-    if userHasNotLoggedIn():
-        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
-
 
     instructorToSend = request.form.get('theinstructor')
     instructor_row = query_db('select * from instructor where username=?', [instructorToSend], one=True)
@@ -259,9 +221,8 @@ def feedback_result():
 # The score for the individual student
 @app.route('/scores', methods=['GET'])
 def scores():
-    if userHasNotLoggedIn():
-        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
-
+    if 'username' not in session :
+        return "You must be logged in to visit this page"
     if session['userType'] != 'student':
         return "You must be a student to see this page"
 
@@ -269,52 +230,9 @@ def scores():
                                      "FROM Student WHERE student_id=?",(session['userid'],))
 
 
-    return render_template('studentMarks.html',studentMarkDict= marks)
+    # return render_template('studentMarks.html',studentMarkDict= marks)
 
-    # return marks.__str__()
-
-
-# Stuff from the previous assignment:
-
-# TODO: Integrate these pages with the new pages
-
-
-@app.route('/index')
-def index():
-    return render_template('index.html')
-
-
-@app.route("/about")
-def about():
-    return render_template("about.html")
-
-# @app.route("/feedback")
-# def feedback():
-#     return render_template("feedback.html")
-
-@app.route("/thankyou")
-def thankyou():
-    return render_template("thankyou.html")
-
-@app.route("/Assignments")
-def Assignments():
-    return render_template("Assignments.html")
-
-@app.route("/CourseTeam")
-def CourseTeam():
-    return render_template("CourseTeam.html")
-
-@app.route("/labs")
-def labs():
-    return render_template("labs.html")
-
-@app.route("/lecture")
-def lecture():
-    return render_template("lecture.html")
-
-@app.route("/tutorials")
-def tutorials():
-    return render_template("tutorials.html")
+    return marks.__str__()
 
 
 if __name__ == "__main__":

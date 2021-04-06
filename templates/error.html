@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Error</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='error.css') }}" type="text/css">
+  </head>
+
+  <body>
+    {% include "header.html" %}
+
+      <div class="content">
+        <h1>An Error Has Occured:</h1>
+          <p>{{ errorMsg }}</p>
+
+      </div>
+    {% include "footer.html" %}
+  </body>

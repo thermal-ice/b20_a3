@@ -10,6 +10,7 @@
     color: floralwhite;
     text-align: start;
     font-size: x-large;
+    
 }
 
 .content body{
@@ -26,16 +27,18 @@
     border-left: 2px solid #58acb8;
     border-right: 2px solid #58acb8;
     border-bottom: 4px solid #1b5d96;
+
+    width:fit-content;
 }
 
 .header {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 200px 200px 200px 200px 200px 200px 200px 200px 200px 200px;
     background-color: #58acb8;
     border-bottom: 4px solid #1b5d96;
     color: #eee;
     font-size: 20px;
-    text-align: center;
+    text-align: left;
 }
 
 .header div {
@@ -44,6 +47,12 @@
 }
 
 .students {
+    width:fit-content;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 200px 200px 200px 200px 200px 200px 200px 200px 200px 200px;
+}
+
+.content .gd {
+    padding:4px;
+    margin:4px;
 }

@@ -1,0 +1,26 @@
+.home p {
+    margin: 10px;
+    padding: 10px;
+    background-color: darkgrey;
+  }
+  .home h1{
+    /*darkslategrey*/
+    margin: 10px;
+    padding: 10px;
+    background-color: darkblue;
+    color: floralwhite;
+    text-align: start;
+  }
+
+  .home h6{
+    margin: 10px;
+    padding: 10px;
+
+    background-color: lightgrey;
+    color: black;
+    text-align: start;
+    font-size: 30px;
+  }
+  .home .menu{
+    color: black;
+  }
