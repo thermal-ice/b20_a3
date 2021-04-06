@@ -38,7 +38,7 @@
 
   .container .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     color: floralwhite;
     text-align: center;
     font-size: 30px;

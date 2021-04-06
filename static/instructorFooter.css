@@ -1,0 +1,22 @@
+.footer .menu {
+    color:white;
+}
+
+.footer{
+    margin: 10px;
+    padding: 10px;
+    background-color: darkblue;
+    color:lightgrey;
+  }
+
+  .footer a:link {
+    color: lightskyblue;
+  }
+
+  .footer a:visited {
+    color: lightseagreen;
+  }
+
+  .footer a:hover {
+    color: lightslategray;
+  }
