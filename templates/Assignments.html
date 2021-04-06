@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Assignments.css') }}">
+
+    <title>CSCB63 -- Design and Analysis of Data Structures</title>
+  </head>
+  <body>
+    {% extends "template.html" %}
+    {% block content %}
+
+    <div class="content">
+      <div class="assignment">
+        <h2>Assignment 1</h2>
+        <hr>
+
+        <p>To be submitted on <a href="../dummy files/dummyLINK.pdf" target="_blank">GradeScope</a>.<br>
+        <a href="../dummy files/dummyPDF.pdf" target="_blank">a1.pdf</a>,
+        <a href="../dummy files/dummyPDF.pdf" target="_blank">a1.tex</a>
+        Small update Jan. 27 (noted in red)
+        </p>
+      </div>
+      <div class="assignment">
+        <h2>Assignment 2</h2>
+        <hr>
+
+        <p>To be submitted on <a href="../dummy files/dummyLINK.pdf" target="_blank">GradeScope</a>.<br>
+        <a href="../dummy files/dummyPDF.pdf" target="_blank">a2.pdf</a>,
+        <a href="../dummy files/dummyPDF.pdf" target="_blank">a2.tex</a>
+        </p>
+      </div>
+      <div class="assignment">
+        <h2>Assignment 3</h2>
+        <hr>
+
+        <p>To be submitted on <a href="../dummy files/dummyLINK.pdf" target="_blank">GradeScope</a>.<br>
+        <a href="../dummy files/dummyPDF.pdf" target="_blank">a3.pdf</a>,
+        <a href="../dummy files/dummyPDF.pdf" target="_blank">a3.tex</a>
+        </p>
+      </div>
+    </div>
+
+    {% include "footer.html" %}
+    {% endblock %}
+
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/CourseTeam.css') }}">
+
+    <title>CSCB63 -- Design and Analysis of Data Structures</title>
+  </head>
+  <body>
+    {% extends "template.html" %}
+    {% block content %}
+
+    <div class="content">
+      <h1>Course Team</h1>
+      <hr>
+
+      <h2>Instructors</h2>
+      <div class="instructors">
+        <div class="instructor">
+          <b>Dr. Anna Bretscher</b> <br>
+          Email: <a href="../dummy files/dummyLINK.pdf">anna.bretscher@utoronto.ca</a> <br>
+          Office: IC 493
+        </div>
+      </div>
+
+      <hr>
+
+      <h2>TA s</h2>
+      <div class="tas">
+        <div class="ta">
+          <b>TA 1</b> <br>
+          Tutorial 0001: Friday 12:00 - 13:00 <br>
+          TA office hours: Friday 13:00 - 14:00 <br>
+          Email: <a href="../dummy files/dummyLINK.pdf">TA1@mail.utoronto.ca</a>
+        </div>
+        <div class="ta">
+          <b>TA 2</b> <br>
+          Tutorial 0001: Friday 12:00 - 13:00 <br>
+          TA office hours: Friday 13:00 - 14:00 <br>
+          Email: <a href="../dummy files/dummyLINK.pdf">TA2@mail.utoronto.ca</a>
+        </div>
+        <div class="ta">
+          <b>TA 3</b> <br>
+          Tutorial 0001: Friday 12:00 - 13:00 <br>
+          TA office hours: Friday 13:00 - 14:00 <br>
+          Email: <a href="../dummy files/dummyLINK.pdf">TA3@mail.utoronto.ca</a>
+        </div>
+        <div class="ta">
+          <b>TA 4</b> <br>
+          Tutorial 0001: Friday 12:00 - 13:00 <br>
+          TA office hours: Friday 13:00 - 14:00 <br>
+          Email: <a href="../dummy files/dummyLINK.pdf">TA4@mail.utoronto.ca</a>
+        </div>
+      </div>
+
+    </div>
+
+    {% include "footer.html" %}
+    {% endblock %}
+
+  </body>
+</html>

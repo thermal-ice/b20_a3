@@ -133,7 +133,7 @@ def loginresult():
         else:
             session['userid'] = cur2res['instructor_id']
             session['userType'] = 'instructor'
-        return f"Hi {potentialusername}, you have logged on, with userid {session['userid']}"
+        return render_template('index.html')
     else:
         return redirect(url_for('loginpage', loginresult='bad'))
 
@@ -145,7 +145,6 @@ def example():
 
 
 @app.route('/')
-@app.route("/index")
 def root():
     return redirect(url_for('loginpage'))
 
@@ -262,6 +261,49 @@ def scores():
     return render_template('studentMarks.html',studentMarkDict= marks)
 
     # return marks.__str__()
+
+
+# Stuff from the previous assignment:
+
+# TODO: Integrate these pages with the new pages
+
+
+@app.route('/index')
+def index():
+    return render_template('index.html')
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+# @app.route("/feedback")
+# def feedback():
+#     return render_template("feedback.html")
+
+@app.route("/thankyou")
+def thankyou():
+    return render_template("thankyou.html")
+
+@app.route("/Assignments")
+def Assignments():
+    return render_template("Assignments.html")
+
+@app.route("/CourseTeam")
+def CourseTeam():
+    return render_template("CourseTeam.html")
+
+@app.route("/labs")
+def labs():
+    return render_template("labs.html")
+
+@app.route("/lecture")
+def lecture():
+    return render_template("lecture.html")
+
+@app.route("/tutorials")
+def tutorials():
+    return render_template("tutorials.html")
 
 
 if __name__ == "__main__":
