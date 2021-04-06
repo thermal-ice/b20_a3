@@ -170,8 +170,8 @@ def getStudentMarks():
         return render_template('error.html', errorMsg="You must be an instructor to see this page")
 
 
-    mark1 = query_db('SELECT * FROM Student')
-    return render_template('instructorMarks.html', marks = mark1)
+    mark1 = query_db('SELECT student_id,firstName,lastName,A1_mark,A2_mark,A3_mark,Lab1_mark,Lab2_mark,Lab3_mark, midtermMark, finalExam FROM Student')
+    return render_template('instructorMarks.html', marks = mark1, numCols = 5)
 
 
 @app.route('/feedback')
@@ -179,11 +179,12 @@ def getAllFeedback():
     if userHasNotLoggedIn():
         return redirect(url_for('loginpage',loginresult='notLoggedIn'))
 
-    if session['userType'] != 'student':
-        return render_template('error.html', errorMsg="You must be an student to see this page")
+    if session['userType'] != 'instructor':
+        return render_template('error.html', errorMsg="You must be an instructor to see this page")
 
-    dict1 = query_db('SELECT * FROM Feedback')
-    return render_template('seeFeedback.html', mydict=dict1)
+    dict1 = query_db('SELECT feedback_text FROM Feedback WHERE instructor_id=?',(session['userid'],))
+    # return render_template('seeFeedback.html', mydict=dict1)
+    return dict1.__str__()
 
 @app.route('/remarks')
 def getAllRemarks():
@@ -191,6 +192,8 @@ def getAllRemarks():
     if userHasNotLoggedIn():
         return redirect(url_for('loginpage',loginresult='notLoggedIn'))
 
+    if session['userType'] != 'instructor':
+        return render_template('error.html', errorMsg="You must be an instructor to see this page")
 
 
     return query_db('SELECT * FROM Remarks').__str__()
@@ -244,7 +247,6 @@ def feedback():
 def feedback_result():
     if userHasNotLoggedIn():
         return redirect(url_for('loginpage',loginresult='notLoggedIn'))
-
 
     instructorToSend = request.form.get('theinstructor')
     instructor_row = query_db('select * from instructor where username=?', [instructorToSend], one=True)
