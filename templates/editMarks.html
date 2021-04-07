@@ -13,7 +13,6 @@
 
 <form action="/editMarkResults"  method= "post" onsubmit="return validateInput()" >
   Enter the Student ID: <input type="number" id="studentid" size="20" name="studentid"><br>
-{#  Assignment: <input type="text" id="assignment" size="20" name="assignment"><br>#}
     Pick the coursework: <select name="thecoursework" id="thecoursework">
             {% for courseworkoption in courseworklist %}
                 <option value="{{ courseworkoption }}">{{ courseworkoption }}</option>
@@ -39,9 +38,6 @@ function validateInput() {
     alert("All fields must have a value, cannot have empty studentID nor Mark value");
     return false;
 }
-
-
-
 
 }
 </script>
