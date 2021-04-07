@@ -195,8 +195,8 @@ def getAllRemarks():
     if session['userType'] != 'instructor':
         return render_template('error.html', errorMsg="You must be an instructor to see this page")
 
-
-    return query_db('SELECT * FROM Remarks').__str__()
+    remarks= query_db('SELECT * FROM Remarks')
+    return render_template("remarks.html", myremarks = remarks)
 
 
 coursework = ['A1', 'A2', 'A3',
