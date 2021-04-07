@@ -205,6 +205,11 @@ coursework = ['A1', 'A2', 'A3',
               'Final exam'
               ]
 
+courseworkToColumnName = {'A1':'A1_mark', 'A2':'A2_mark', 'A3':'A3_mark',
+              'Lab1':'Lab1_mark', 'Lab2':'Lab2_mark', 'Lab3':'Lab3_mark',
+              'Midterm exam':'midtermMark',
+              'Final exam':'finalExam'}
+
 AssignmentOrLabs = ['A1', 'A2', 'A3',
                     'Lab1', 'Lab2', 'Lab3', ]
 
@@ -274,6 +279,33 @@ def scores():
     return render_template('studentMarks.html',studentMarkDict= marks)
 
     # return marks.__str__()
+
+@app.route('/editmarks', methods=['GET'])
+@app.route('/editmarks/<result>', methods=['GET'])
+def editMarks(result = 'good'):
+    if result == 'bad':
+        return render_template('editMarks.html', courseworklist=coursework, validStudentId=False)
+
+    return render_template('editMarks.html', courseworklist = coursework, validStudentId= True)
+
+@app.route('/editMarkResults', methods=['POST'])
+def editMarkResults():
+    potentialStudentId = int(request.form.get('studentid'))
+    newPotentialMark = int(request.form.get('newMark'))
+
+    studentIdExist = getSingleRowFromDatabase("SELECT 1 Student_id FROM Student where student_id=?;",(potentialStudentId,))
+
+    if studentIdExist is not None:
+
+        colToInsertInto = courseworkToColumnName[request.form.get('thecoursework')] #Probably should sanitize this input
+
+        insertIntoDatabase(f"UPDATE Student SET {colToInsertInto}=? WHERE student_id=? ;",(newPotentialMark,potentialStudentId))
+        return "success" #Link back to home page
+
+
+    return redirect(url_for('editMarks', result='bad'))
+
+
 
 
 # Stuff from the previous assignment:
