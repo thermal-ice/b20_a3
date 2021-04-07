@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Users</title>
+</head>
+<body>
+
+{% if userNameTaken %}
+    <p>Sorry, the username has already been taken, please given another username</p>
+
+{% endif %}
+
+
+<form action="/registerInstructorResult"  method= "post" onsubmit="return validateInput()" >
+    Username: <input type="text" id="username" size="20" name="username"><br>
+    Password: <input type="password" id="password" size="20" name="password"><br>
+    Lecture Section: <input type="number" id="lecSection" size="20" name="lecSection"><br>
+    <br>
+  <input type="submit" value="Submit">
+</form>
+
+
+<script>
+
+    function validateInput() {
+
+    if (document.getElementById("username").value.length === 0 ||
+        document.getElementById("password").value.length === 0 ||
+        document.getElementById("lecSection").value.length === 0) {
+        alert("All fields must have a value");
+        return false;
+    }
+    return true;
+
+}
+</script>
+
+
+
+
+</body>
+</html>
