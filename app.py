@@ -306,6 +306,62 @@ def editMarkResults():
     return redirect(url_for('editMarks', result='bad'))
 
 
+@app.route('/registerStudent',methods=['GET'])
+@app.route('/registerStudent/<result>',methods=['GET'])
+def registerStudent(result = 'good'):
+    if result == 'bad':
+        return render_template('registerStudent.html',userNameTaken=True)
+    return render_template('registerStudent.html',userNameTaken = False)
+
+
+@app.route('/registerStudentResult',methods=['POST'])
+def registerStudentResult():
+
+    potentialUsername = request.form.get('username')
+
+    userNameAlreadyExists = getSingleRowFromDatabase("SELECT 1 username FROM Student where username=?;",(potentialUsername,))
+
+    if userNameAlreadyExists is None:
+        potentialPassword = request.form.get('password')
+        potentialfirstName = request.form.get('firstname')
+        potentialLastname = request.form.get('lastName')
+        potentialLectureSection = int(request.form.get('lecSection'))
+
+        insertIntoDatabase("INSERT INTO Student(username,password,firstName,lastName,lectureSection) VALUES (?,?,?,?,?);",
+                           (potentialUsername,potentialPassword,potentialfirstName,potentialLastname,potentialLectureSection))
+
+        return "succ"
+
+    return redirect(url_for('registerStudent',result='bad'))
+
+
+@app.route('/registerInstructor', methods=['GET'])
+@app.route('/registerInstructor/<result>',methods=['GET'])
+def registerInstructor(result='good'):
+    if result == 'bad':
+        return render_template('registerInstructor.html', userNameTaken=True)
+    return render_template('registerInstructor.html', userNameTaken=False)
+
+
+@app.route('/registerInstructorResult',methods=['POST'])
+def registerInstructorResult():
+    potentialUsername = request.form.get('username')
+
+    userNameAlreadyExists = getSingleRowFromDatabase(
+        "SELECT 1 username FROM Instructor where username=?;",
+        (potentialUsername,))
+
+    if userNameAlreadyExists is None:
+        potentialPassword = request.form.get('password')
+        potentialLectureSection = int(request.form.get('lecSection'))
+
+        insertIntoDatabase(
+            "INSERT INTO Instructor(username,password,lecture_section) VALUES (?,?,?);",
+            (potentialUsername, potentialPassword, potentialLectureSection))
+
+        return "succ"
+
+    return redirect(url_for('registerInstructor', result='bad'))
 
 
 # Stuff from the previous assignment:
