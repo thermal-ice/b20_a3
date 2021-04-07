@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Read Remarks</title>
+    <link rel="stylesheet" href="/static/remarks.css" type="text/css">
+  </head>
+
+  <body>
+    {% include "instructorHeader.html" %}
+    <div class="content">
+        <h1>Student Remark Requests</h1>
+
+        <div class="table">
+            <div class="header">
+                <div>remark id</div> 
+                <div>Assignment to remark:</div>
+                <div>Remark Request</div> 
+            </div>
+
+
+            <div class="feedback">
+                
+                {% for elem in myremarks %}
+                    {% for d in elem.values() %}
+                        <div class = 'gd'>{{d}}</div>
+                    <!--{% for d in elem.value %}-->
+                    
+                    <!--{% endfor %}-->
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% include "instructorFooter.html" %}
+  </body>

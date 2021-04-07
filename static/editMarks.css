@@ -1,0 +1,41 @@
+.markedit {
+    text-align: center;
+    align-self: center;
+    background-color: darkgrey;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 400px;
+    margin-right: 400px;
+    padding:30px;
+}
+
+.markedit h1 {
+    margin:10px;
+}
+
+label {
+    margin: 10px;
+    padding: 5px;
+
+    font-size: large;
+    color: black;
+    text-align: start;
+  }
+
+  input[type=text], select {
+    margin: 10px;
+    padding: 0px;
+    font-size: large;
+    background-color: lightgrey;
+    color: darkblue;
+    text-align: start;
+   }
+  
+   input[type=submit] {
+    margin: 10px;
+    padding: 5px;
+  
+    background-color: darkblue;
+    color: floralwhite;
+    text-align: start;
+   }

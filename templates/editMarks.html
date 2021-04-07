@@ -1,32 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit marks</title>
-</head>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>edit marks</title>
+    <link rel="stylesheet" href="/static/editMarks.css" type="text/css">
+  </head>
 <body>
 
-{% if not validStudentId  %}
-<p>You must give a valid student number</p>
-{% endif %}
+{% include "instructorHeader.html" %}
+<div class = 'markedit'>
+  {% if not validStudentId  %}
+    <p>You must give a valid student number</p>
+  {% endif %}
+  <h1>Update your student's marks:</h1>
 
-
-<form action="/editMarkResults"  method= "post" onsubmit="return validateInput()" >
-  Enter the Student ID: <input type="number" id="studentid" size="20" name="studentid"><br>
-{#  Assignment: <input type="text" id="assignment" size="20" name="assignment"><br>#}
-    Pick the coursework: <select name="thecoursework" id="thecoursework">
+  <form action="/editMarkResults"  method= "post" onsubmit="return validateInput()" >
+    <label for= "studentid" >Enter the Student ID: </label> 
+    <input type="number" id="studentid" size="20" name="studentid"><br>
+  {#  Assignment: <input type="text" id="assignment" size="20" name="assignment"><br>#}
+      <label for= "thecoursework">Pick the coursework: </label>
+      <select name="thecoursework" id="thecoursework">
             {% for courseworkoption in courseworklist %}
                 <option value="{{ courseworkoption }}">{{ courseworkoption }}</option>
             {% endfor %}
-    </select><br>
-  New Mark: <input type="number" id="newMark" size="20" name="newMark"><br><br>
-  <input type="submit" value="Submit">
-</form>
+      </select><br>
+      New Mark: <input type="number" id="newMark" size="20" name="newMark"><br><br>
+    <input type="submit" value="Submit">
+  </form>
 
 
-<script>
-function validateInput() {
-  var newMarkVal = document.getElementById("newMark").value;
+  <script>
+  function validateInput() {
+    var newMarkVal = document.getElementById("newMark").value;
 
 
   if (newMarkVal <0 || newMarkVal > 100) {
@@ -35,17 +40,19 @@ function validateInput() {
   }
 
   if(document.getElementById("studentid").value.length === 0 || document.getElementById("newMark").value.length === 0)
-{
+  {
     alert("All fields must have a value, cannot have empty studentID nor Mark value");
     return false;
-}
+  }
 
 
 
 
 }
-</script>
-
-
+  </script>
+  </div>
+  {% include "instructorFooter.html" %}
 </body>
+
+
 </html>
