@@ -213,7 +213,7 @@ courseworkToColumnName = {'A1':'A1_mark', 'A2':'A2_mark', 'A3':'A3_mark',
 AssignmentOrLabs = ['A1', 'A2', 'A3',
                     'Lab1', 'Lab2', 'Lab3', ]
 
-instructorlist = ['LyndaBarnes', 'SteveEngels', 'PaulGries', 'DanHeap', 'KarenReid']
+# instructorlist = ['LyndaBarnes', 'SteveEngels', 'PaulGries', 'DanHeap', 'KarenReid']
 
 @app.route('/remarkrequest', methods=['GET'])
 def remarkrequest():
@@ -238,6 +238,14 @@ def remarkresult():
 
     return f"The work to remark is: {courseworkToRemark}, the explantion is {explanationForRemark}"
 
+def get_instructor_list():
+    instuctor_list = query_db("select username from Instructor")
+    result = []
+    for instuctor_dict in instuctor_list:
+        result.append(instuctor_dict["username"])
+
+    return result
+
 @app.route('/submitFeedback', methods=['GET'])
 def feedback():
     if userHasNotLoggedIn():
@@ -245,6 +253,8 @@ def feedback():
 
     if session['userType'] != 'student':
         return "You must be an student to see this page"
+
+    instructorlist = get_instructor_list()
     return render_template('feedback.html', instructorlist=instructorlist) #Why the hardcode?
 
 
