@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Feedback</title>
-</head>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>student's feedback</title>
+    <link rel="stylesheet" href="/static/feedback.css" type="text/css">
+  </head>
 <body>
+    {% include "header.html" %}
+    <div class="feedback">
+        <form action="feedback_result" method="post">
 
-    <form action="feedback_result" method="post">
+            <label for="theinstructor">Pick an instructor to send the feedback to:</label>
+            <select name="theinstructor" id="theinstructor">
+                {% for instructoroption in instructorlist %}
+                    <option value="{{ instructoroption }}">{{ instructoroption }}</option>
+                {% endfor %}
+            </select>
+            <br>
 
-        <label for="theinstructor">Pick an instructor to send the feedback to:</label>
-        <select name="theinstructor" id="theinstructor">
-            {% for instructoroption in instructorlist %}
-                <option value="{{ instructoroption }}">{{ instructoroption }}</option>
-            {% endfor %}
-        </select>
-        <br>
-
-        <label for="feedback_text">Please enter your feedback about the course below:</label>
-        <br>
-        <textarea id="feedback_text" name="feedback_text" rows="4" cols="60" placeholder="Feedback here: "></textarea>
-        <br>
-        <input type="submit" value="Submit">
-    </form>
-
+            <label for="feedback_text">Please enter your feedback about the course below:</label>
+            <br>
+            <textarea id="feedback_text" name="feedback_text" rows="4" cols="60" placeholder="Feedback here: "></textarea>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    {% include "footer.html" %}
 </body>
 </html>

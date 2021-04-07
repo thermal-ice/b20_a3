@@ -1,0 +1,56 @@
+.content {
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.content h1{
+    margin: 10px;
+    padding: 10px;
+    background-color: darkblue;
+    color: floralwhite;
+    text-align: start;
+    font-size: x-large;
+    
+}
+
+.content body{
+    background-color: cornsilk;
+}
+
+.content p {
+    margin: 10px 20px 10px 20px;
+    color: darkblue;
+  }
+
+.content .table {
+    
+    margin: 0px 20px 0px 20px;
+    border-left: 2px solid #58acb8;
+    border-right: 2px solid #58acb8;
+    border-bottom: 4px solid #1b5d96;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+    background-color: #58acb8;
+    border-bottom: 4px solid #1b5d96;
+    color: #eee;
+    font-size: 20px;
+    text-align: left;
+}
+
+.header div {
+    background: None;
+    padding: 10px 0px 10px;
+}
+
+.students {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+}
+
+.content .gd {
+    padding:4px;
+    margin:4px;
+}

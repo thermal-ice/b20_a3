@@ -1,24 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Student Marks</title>
-</head>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>studentMarks</title>
+    <link rel="stylesheet" href="/static/studentMarks.css" type="text/css">
+  </head>
 <body>
-    {% for key in studentMarkDict %}
-{#        {% if key=='labMarks' or key=='assignmentMarks' %}#}
-{#            {% set parsedMarksList = scoreStringParser(studentMarkDict[key]) %} '50/60/50' -> ['50', '60', '50']#}
-{#                {% for i in range(parsedMarksList | length) %}#}
-{#                    {% set j = i + 1 %}#}
-{#                    <p> Coursework: {{ key }} {{ j }}, Score: {{ parsedMarksList[i] }}</p>#}
-{##}
-{#                {% endfor %}#}
-{##}
-{#        {% else %}#}
+    {% include "header.html" %}
 
-            <p>Coursework: {{ key }}, Score: {{ studentMarkDict[key] }} </p>
-{#        {% endif %}#}
+      <div class="content">
+        <h1>Student marks</h1>
 
-    {% endfor %}
+        <div class="table">
+          <div class="header">
+            {% for key in studentMarkDict %}
+              <div>{{ key }}</div> 
+            {% endfor %}
+          </div>
+
+
+          <div class="students">
+            {% for dict in studentMarkDict.values() %}
+                <div class="gd"> {{ dict }}</div>
+            {% endfor %}
+          </div>
+        </div>
+        
+      </div>
+    {% include "footer.html" %}
 </body>
 </html>
