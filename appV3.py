@@ -394,27 +394,45 @@ def about():
 
 @app.route("/thankyou")
 def thankyou():
-    return render_template("thankyou.html")
+    if userHasNotLoggedIn():
+        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
+
+    return render_template("thankyou.html", userType = session['userType'])
 
 @app.route("/Assignments")
 def Assignments():
-    return render_template("Assignments.html")
+    if userHasNotLoggedIn():
+        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
+
+    return render_template("Assignments.html",userType = session['userType'])
 
 @app.route("/CourseTeam")
 def CourseTeam():
-    return render_template("CourseTeam.html")
+    if userHasNotLoggedIn():
+        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
+
+    return render_template("CourseTeam.html",userType = session['userType'])
 
 @app.route("/labs")
 def labs():
-    return render_template("labs.html")
+    if userHasNotLoggedIn():
+        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
+
+    return render_template("labs.html",userType = session['userType'])
 
 @app.route("/lecture")
 def lecture():
-    return render_template("lecture.html")
+    if userHasNotLoggedIn():
+        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
+
+    return render_template("lecture.html",userType = session['userType'])
 
 @app.route("/tutorials")
 def tutorials():
-    return render_template("tutorials.html")
+    if userHasNotLoggedIn():
+        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
+
+    return render_template("tutorials.html",userType = session['userType'])
 
 
 if __name__ == "__main__":

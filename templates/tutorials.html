@@ -7,7 +7,12 @@
     <title>CSCB63 -- Design and Analysis of Data Structures</title>
   </head>
   <body>
-    {% extends "template.html" %}
+  {% if userType =='instructor' %}
+      {% extends 'instructorHeader.html' %}
+  {% else %}
+      {% extends 'headerV1.html' %}
+  {% endif %}
+
     {% block content %}
 
     <div class="content">
