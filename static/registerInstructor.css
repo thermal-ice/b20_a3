@@ -1,0 +1,50 @@
+.register {
+    text-align: center;
+    align-self: center;
+    background-color: darkgrey;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 350px;
+    margin-right: 350px;
+    padding:30px;
+}
+
+.register h1 {
+    margin:10px;
+
+}
+
+.titleHere h1 {
+    padding:10px;
+    color: floralwhite;
+    background-color: darkblue;
+    text-align: start;
+}
+
+label {
+    margin: 10px;
+    padding: 5px;
+
+    font-size: large;
+    color: darkblue;
+    text-align: start;
+  }
+
+  input[type=text],input[type=password],input[type=number], select {
+    margin: 10px;
+    padding: 0px;
+    font-size: large;
+    background-color: lightgrey;
+    color: black;
+    text-align: start;
+   }
+
+
+   input[type=submit] {
+    margin: 10px;
+    padding: 5px;
+
+    background-color: darkblue;
+    color: floralwhite;
+    text-align: start;
+   }

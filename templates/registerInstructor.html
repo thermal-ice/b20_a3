@@ -1,15 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register Users</title>
-</head>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Register Instructor</title>
+    <link rel="stylesheet" href="/static/registerInstructor.css" type="text/css">
+  </head>
 <body>
 
+
+<div class=titleHere>
+    <h1>CSCB63 -- Design and Analysis of Data Structures</h1>
+</div>
+
+<div class="register">
 {% if userNameTaken %}
     <p>Sorry, the username has already been taken, please given another username</p>
 
 {% endif %}
+
+
+<h1>Register as an Instructor here:</h1>
+
+
+
 
 
 <form action="/registerInstructorResult"  method= "post" onsubmit="return validateInput()" >
@@ -19,7 +32,7 @@
     <br>
   <input type="submit" value="Submit">
 </form>
-
+</div>
 
 <script>
 
