@@ -275,7 +275,7 @@ def scores():
     if userHasNotLoggedIn():
         return redirect(url_for('loginpage',loginresult='notLoggedIn'))
 
-    if session['userType'] != 'instructor':
+    if session['userType'] != 'student':
         return render_template('error.html', errorMsg="You must be a student to see this page")
 
 

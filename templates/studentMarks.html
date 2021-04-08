@@ -7,9 +7,9 @@
   </head>
 <body>
     {% if userType =='student' %}
-      {% extends "headerV1.html" %}
+      {% include "headerV1.html" %}
     {% else %}
-      {% extends "instructorHeader.html" %}
+      {% include "instructorHeader.html" %}
     {% endif %}
 
     {% block content %}
