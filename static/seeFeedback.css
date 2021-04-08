@@ -30,7 +30,7 @@
 
 .header {
     display: grid;
-    grid-template-columns: 70px 1fr ;
+    grid-template-columns: 1fr ;
     background-color: #58acb8;
     border-bottom: 4px solid #1b5d96;
     color: #eee;
@@ -45,7 +45,7 @@
 
 .feedback {
     display: grid;
-    grid-template-columns: 70px 1fr;
+    grid-template-columns: 1fr;
 }
 
 .gd {

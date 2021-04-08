@@ -184,7 +184,7 @@ def getAllFeedback():
 
     dict1 = query_db('SELECT feedback_text FROM Feedback WHERE instructor_id=?',(session['userid'],))
     # return render_template('seeFeedback.html', mydict=dict1)
-    return dict1.__str__()
+    return render_template("seeFeedback.html", mydict = dict1)
 
 @app.route('/remarks')
 def getAllRemarks():
