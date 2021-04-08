@@ -9,19 +9,6 @@ app = Flask(__name__)
 DATABASE = os.path.join('.', 'assignment3.db')
 
 
-
-def scoreStringParser(scoreString: str):
-    return scoreString.split('/')
-
-def joinScoreList(scoreList: list):
-    return '/'.join(scoreList)
-
-
-# Passing in the parser function for assignment/lab marks
-app.jinja_env.globals.update(scoreStringParser=scoreStringParser)
-
-
-
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
@@ -66,22 +53,6 @@ def close_connection(exception):
 
 
 app.secret_key = b'jenny'
-
-
-# @app.route('/index')
-# @app.route('/login', methods=['GET','POST'])
-# def login():
-#
-#     if request.method == 'POST':
-#         session.['username'] = request.form.get('username')
-#         return redirect(url_for('index'))
-#
-#     elif request.method == 'POST':
-#
-#
-#
-#             return f"username is: {username}, you have logged in with password {session[username]}"
-#
 
 def userHasNotLoggedIn():
     return 'username' not in session
@@ -183,8 +154,8 @@ def getAllFeedback():
         return render_template('error.html', errorMsg="You must be an instructor to see this page")
 
     dict1 = query_db('SELECT feedback_text FROM Feedback WHERE instructor_id=?',(session['userid'],))
-    # return render_template('seeFeedback.html', mydict=dict1)
-    return render_template("seeFeedback.html", mydict = dict1)
+    
+    return render_template("seeFeedback.html", mydict = dict1, userType=session['userType'])
 
 @app.route('/remarks')
 def getAllRemarks():
@@ -263,11 +234,11 @@ def feedback_result():
     instructor_row = query_db('select * from instructor where username=?', [instructorToSend], one=True)
     instructor_id = instructor_row['instructor_id']
     feedbackText = request.form.get('feedback_text')
-    # print(feedbackText)
+   
     insertIntoDatabase('INSERT INTO Feedback(instructor_id, feedback_text) VALUES (?, ?)', (instructor_id, feedbackText))
 
     return render_template('success.html',successMsg=f"Your feedback has been submitted successfully! \nTo instructor: {instructorToSend}, " \
-           f"with the following feedback: {feedbackText}")
+           f"with the following feedback: {feedbackText}", userType= session['userType'])
 
 # The score for the individual student
 @app.route('/scores', methods=['GET'])
@@ -285,7 +256,7 @@ def scores():
 
     return render_template('studentMarks.html',studentMarkDict= marks, userType = session['userType'])
 
-    # return marks.__str__()
+    
 
 @app.route('/editmarks', methods=['GET'])
 @app.route('/editmarks/<result>', methods=['GET'])
