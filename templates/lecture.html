@@ -7,8 +7,11 @@
     <title>CSCB63 -- Design and Analysis of Data Structures</title>
   </head>
   <body>
-    {% extends "template.html" %}
-    {% block content %}
+      {% if userType =='student' %}
+         {% extends "studentheader.html" %}
+      {% else %}
+         {% extends "instructorHeader.html" %}
+      {% endif %}
 
     <div class="content">
       <h2>Lecture Schedule</h2>

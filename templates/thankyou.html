@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/thankyou.css') }}">
   </head>
   <body>
+    {% if userType =='student' %}
+      {% extends "studentheader.html" %}
+    {% else %}
+      {% extends "instructorHeader.html" %}
+    {% endif %}
+
     {% include "template.html" %}
     {% block content %}
     <div class="thanks">
@@ -14,6 +20,6 @@
     </div>
     {% include "footer.html" %}
     {% endblock %}
-    
+
   </body>
 </html>
