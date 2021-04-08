@@ -16,12 +16,12 @@
 
         <strong><nav>
           <div class="grid">
-            <h5>Home</h5>
-            <h5>Assignments</h5>
-            <h5>Lectures</h5>
-            <h5>Tutorials</h5>
+            <h5><a href="{{ url_for('index') }}">Home</a></h5>
+            <h5><a class="item1" href="{{ url_for('assignment') }}">Assignments</a></h5>
+            <h5><a class="item1" href="{{ url_for('Lectures') }}">Lectures</a></h5>
+            <h5><a class="item1" href="{{ url_for('tutorials') }}">Tutorials</a></h5>
             <h5><a href="https://piazza.com/class/">Piazza</a></h5>
-            <h5>Labs</h5>
+            <h5><a class="item1" href="{{ url_for('labs') }}">Labs</a></h5>
           </div>
         </nav></strong>
       </div>
