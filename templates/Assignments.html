@@ -7,12 +7,13 @@
     <title>CSCB63 -- Design and Analysis of Data Structures</title>
   </head>
   <body>
-    {% if userType =='student' %}
-      {% extends "studentheader.html" %}
+  {% if userType =='student' %}
+      {% extends "headerV1.html" %}
     {% else %}
       {% extends "instructorHeader.html" %}
     {% endif %}
 
+    {% block content %}
     <div class="content">
       <div class="assignment">
         <h2>Assignment 1</h2>
@@ -44,7 +45,11 @@
       </div>
     </div>
 
-    {% include "footer.html" %}
+        {% if userType =='student' %}
+            {% include "footer.html" %}
+        {% else %}
+            {% include "instructorFooter.html" %}
+        {% endif %}
     {% endblock %}
 
   </body>

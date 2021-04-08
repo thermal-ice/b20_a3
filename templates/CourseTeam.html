@@ -8,10 +8,12 @@
   </head>
   <body>
     {% if userType =='student' %}
-      {% extends "studentheader.html" %}
+      {% extends "headerV1.html" %}
     {% else %}
       {% extends "instructorHeader.html" %}
     {% endif %}
+
+    {% block content %}
 
     <div class="content">
       <h1>Course Team</h1>

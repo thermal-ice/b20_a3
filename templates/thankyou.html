@@ -7,12 +7,11 @@
   </head>
   <body>
     {% if userType =='student' %}
-      {% extends "studentheader.html" %}
+      {% extends "headerV1.html" %}
     {% else %}
       {% extends "instructorHeader.html" %}
     {% endif %}
 
-    {% include "template.html" %}
     {% block content %}
     <div class="thanks">
       <p>Thank you for your submission!</p>

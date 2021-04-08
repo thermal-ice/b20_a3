@@ -94,7 +94,7 @@ def loginpage(loginresult='good'):
     # sessions = {'username': 'student1'}
 
     if not userHasNotLoggedIn():
-        return f"Hi {session['username']}, you have logged on"
+        return redirect(url_for('index'))
 
     if loginresult == 'bad':
         return render_template('loginPage.html', loginStatus=1)
@@ -144,7 +144,7 @@ def loginresult():
         else:
             session['userid'] = cur2res['instructor_id']
             session['userType'] = 'instructor'
-        return render_template('index.html')
+        return render_template('index.html', userType=session['userType'])
     else:
         return redirect(url_for('loginpage', loginresult='bad'))
 
@@ -210,10 +210,6 @@ courseworkToColumnName = {'A1':'A1_mark', 'A2':'A2_mark', 'A3':'A3_mark',
               'Midterm exam':'midtermMark',
               'Final exam':'finalExam'}
 
-AssignmentOrLabs = ['A1', 'A2', 'A3',
-                    'Lab1', 'Lab2', 'Lab3', ]
-
-# instructorlist = ['LyndaBarnes', 'SteveEngels', 'PaulGries', 'DanHeap', 'KarenReid']
 
 @app.route('/remarkrequest', methods=['GET'])
 def remarkrequest():
@@ -252,10 +248,10 @@ def feedback():
         return redirect(url_for('loginpage',loginresult='notLoggedIn'))
 
     if session['userType'] != 'student':
-        return "You must be an student to see this page"
+        return render_template('error.html', errorMsg="You must be a Student to see this page")
 
     instructorlist = get_instructor_list()
-    return render_template('feedback.html', instructorlist=instructorlist) #Why the hardcode?
+    return render_template('feedback.html', instructorlist=instructorlist, userType= session['userType'])
 
 
 @app.route('/feedback_result', methods=['POST'])
@@ -270,8 +266,8 @@ def feedback_result():
     # print(feedbackText)
     insertIntoDatabase('INSERT INTO Feedback(instructor_id, feedback_text) VALUES (?, ?)', (instructor_id, feedbackText))
 
-    return f"Your feedback has been submitted successfully! \nTo instructor: {instructorToSend}, " \
-           f"with the following feedback: {feedbackText}"
+    return render_template('success.html',successMsg=f"Your feedback has been submitted successfully! \nTo instructor: {instructorToSend}, " \
+           f"with the following feedback: {feedbackText}")
 
 # The score for the individual student
 @app.route('/scores', methods=['GET'])
@@ -279,14 +275,15 @@ def scores():
     if userHasNotLoggedIn():
         return redirect(url_for('loginpage',loginresult='notLoggedIn'))
 
-    if session['userType'] != 'student':
-        return "You must be a student to see this page"
+    if session['userType'] != 'instructor':
+        return render_template('error.html', errorMsg="You must be a student to see this page")
+
 
     marks = getSingleRowFromDatabase("SELECT A1_mark, A2_mark, A3_mark, Lab1_mark, Lab2_mark, Lab3_mark, midtermMark,finalExam "
                                      "FROM Student WHERE student_id=?",(session['userid'],))
 
 
-    return render_template('studentMarks.html',studentMarkDict= marks)
+    return render_template('studentMarks.html',studentMarkDict= marks, userType = session['userType'])
 
     # return marks.__str__()
 
@@ -310,7 +307,8 @@ def editMarkResults():
         colToInsertInto = courseworkToColumnName[request.form.get('thecoursework')] #Probably should sanitize this input
 
         insertIntoDatabase(f"UPDATE Student SET {colToInsertInto}=? WHERE student_id=? ;",(newPotentialMark,potentialStudentId))
-        return "success" #Link back to home page
+
+        return render_template('success.html',successMsg=f"You have successfully edited {potentialStudentId}'s Mark")
 
 
     return redirect(url_for('editMarks', result='bad'))
@@ -340,7 +338,7 @@ def registerStudentResult():
         insertIntoDatabase("INSERT INTO Student(username,password,firstName,lastName,lectureSection) VALUES (?,?,?,?,?);",
                            (potentialUsername,potentialPassword,potentialfirstName,potentialLastname,potentialLectureSection))
 
-        return "succ"
+        return render_template('success.html',successMsg=f"You have successfully registered with {potentialUsername} as your username")
 
     return redirect(url_for('registerStudent',result='bad'))
 
@@ -369,7 +367,7 @@ def registerInstructorResult():
             "INSERT INTO Instructor(username,password,lecture_section) VALUES (?,?,?);",
             (potentialUsername, potentialPassword, potentialLectureSection))
 
-        return "succ"
+        return render_template('success.html',successMsg=f"You have successfully registered with {potentialUsername} as your username")
 
     return redirect(url_for('registerInstructor', result='bad'))
 
@@ -381,12 +379,17 @@ def registerInstructorResult():
 
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    if userHasNotLoggedIn():
+        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
+    return render_template('index.html',userType = session['userType'])
 
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    if userHasNotLoggedIn():
+        return redirect(url_for('loginpage',loginresult='notLoggedIn'))
+
+    return render_template("about.html", userType=session['userType'])
 
 # @app.route("/feedback")
 # def feedback():

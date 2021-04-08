@@ -8,10 +8,12 @@
   </head>
   <body>
     {% if userType =='student' %}
-      {% extends "studentheader.html" %}
+      {% extends "headerV1.html" %}
     {% else %}
       {% extends "instructorHeader.html" %}
     {% endif %}
+
+    {% block content %}
 
     <div class="content">
       <h2>Tutorial Handouts</h2>
@@ -95,7 +97,11 @@
       </div>
     </div>
 
-    {% include "footer.html" %}
+    {% if userType =='student' %}
+            {% include "footer.html" %}
+        {% else %}
+            {% include "instructorFooter.html" %}
+        {% endif %}
     {% endblock %}
 
   </body>

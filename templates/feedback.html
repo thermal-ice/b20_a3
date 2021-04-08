@@ -6,7 +6,14 @@
     <link rel="stylesheet" href="/static/feedback.css" type="text/css">
   </head>
 <body>
-    {% include "header.html" %}
+     {% if userType =='student' %}
+      {% extends "headerV1.html" %}
+    {% else %}
+      {% extends "instructorHeader.html" %}
+    {% endif %}
+
+    {% block content %}
+
     <div class="feedback">
         <form action="feedback_result" method="post">
 
@@ -26,5 +33,6 @@
         </form>
     </div>
     {% include "footer.html" %}
+    {% endblock %}
 </body>
 </html>

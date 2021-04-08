@@ -7,8 +7,14 @@
   </head>
   <body>
     
+    {% if userType =='student' %}
+      {% extends "headerV1.html" %}
+    {% else %}
+      {% extends "instructorHeader.html" %}
+    {% endif %}
+
     {% block content %}
-    {% include "template.html" %}
+
     <div class="home">
       <h6>To do:</h6>
 
@@ -32,7 +38,13 @@
         Prequisite CSCB36H or (CSCB38H) & [CGPA 2.75 or enrolment in a CSC subject POSt]<br>
       </p>
     </div>
-    {% include "footer.html" %}
+
+        {% if userType =='student' %}
+            {% include "footer.html" %}
+        {% else %}
+            {% include "instructorFooter.html" %}
+        {% endif %}
+
     {% endblock %}
     
   </body>
